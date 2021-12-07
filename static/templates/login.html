@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+{% if error %}
+<p> {{error}}</p>
+{% endif %}
+<input type='checkbox' id='form-switch'>
+<form id='login-form' action="#" method='post'>
+  <input type="text" placeholder="Username" name="user" required>
+  <input type="password" placeholder="Password" name="password" required>
+  <button type='submit'>Login</button>
+  <label for='form-switch'><span>Register</span></label>
+</form>
+<form id='register-form' action="" method='post'>
+  <input type="text" placeholder="Username" required>
+  <input type="email" placeholder="Email" required>
+  <input type="password" placeholder="Password" required>
+  <input type="password" placeholder="Re Password" required>
+  <button type='submit'>Register</button>
+  <label for='form-switch'>Already Member ? Sign In Now..</label>
+</form>
+</body>
+
+</html>

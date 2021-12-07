@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<br>
+<br>
+<form id="form">
+  <input type="search" id="query" name="q" placeholder="Search..." style="float: left; width: 80%;">
+  <button style="float: right; width: 20%;">Search</button>
+</form>
+<br>
+<br>
+<table class="songs-table">
+    <thead>
+    <tr>
+        <th>Song</th>
+        <th>Album</th>
+        <th>Artist</th>
+        <th>Duration</th>
+    </tr>
+    </thead>
+    <tbody id="table-content">
+        {% for row in data %}
+        <tr>
+            {% for value in row %}
+            <th>{{ value }}</th>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if music %}
+<p>{{music}}</p>
+{% endif %}
+
+{% endblock %}

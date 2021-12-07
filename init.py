@@ -1,4 +1,5 @@
-from flask import (Flask, render_template, request, session)
+from flask import (Flask, render_template, request,
+                   session, redirect, url_for, json)
 import database
 
 app = Flask(__name__, template_folder='static/templates')
@@ -18,11 +19,36 @@ def login():
         password = request.form['password']
         data = database.get_profile(user, password)
         if data is None:
-            return render_template('login.html')
+            return render_template('login.html', error="Invalid credentials")
         else:
             session['user'] = user
-            return render_template('profile.html', text=data)
+            session['password'] = password
+            return redirect(url_for('profile'))
     return render_template('login.html')
+
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    data = database.get_profile(session['user'], session['password'])
+    return render_template("profile.html", profile=data)
+
+
+@app.route('/music', methods=['GET'])
+def music():
+    music_data = database.get_all_songs()
+    return render_template("music.html", data=music_data)
+
+
+# @app.route('/search_music', methods=['GET'])
+# def music():
+#     song = request.form['input']
+#     music_data = database.get_song(song)
+#     return render_template("music.html", data=music_data)
+
+
+
+# @app.route('/login', methods=['GET', 'POST'])
+# @app.route('/', methods=['GET', 'POST'])
 
 
 if __name__ == '__main__':

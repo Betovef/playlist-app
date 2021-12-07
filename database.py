@@ -41,3 +41,15 @@ def get_profile(user, password):
             return user_data
     except sqlite3.Error as error:
         print(error)
+
+
+def get_all_songs():
+    try:
+        cur = get_db()
+        music_data = cur.execute("""SELECT * FROM music; """).fetchall()
+        if music_data is None:
+            return None
+        else:
+            return music_data
+    except sqlite3.Error as error:
+        print(error)

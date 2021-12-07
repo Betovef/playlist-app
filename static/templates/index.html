@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+
+</head>
+<body>
+
+<body>
+
+<div class="topnav">
+  <a class="active" href="#home">Bobcat Tunes</a>
+  <a href="/profile">Profile</a>
+    <a href="/music">Music</a>
+<!--  <input type="text" placeholder="Search..">-->
+</div>
+{% block content %} {% endblock %}
+</body>
+</html>
