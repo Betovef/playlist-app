@@ -59,7 +59,7 @@ def get_playlist_songs(playlist):
     """
     FIXME: Need to find a query to return the music in the selcted playlist name
     :param playlist: playlist name in the database
-    :return: list of songs 
+    :return: list of songs
     """
     try:
         cur = get_db()
