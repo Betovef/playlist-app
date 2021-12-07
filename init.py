@@ -1,31 +1,15 @@
-from flask import Flask, g
-import sqlite3
+from flask import (Flask)
+import database
 
-app = Flask(__name__)
-
-DATABASE = '/path/to/database.db'
-
-
-""" DATABASE IMPLEMENTATION"""
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-    return db
-
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+app = Flask(__name__, template_folder='static/templates')
+app.config.from_mapping(
+        SECRET_KEY='dev'
+    )
 
 
-
-"""LOGIC IMPLEMENTATION"""
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+with app.app_context():
+    database.init_db()
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
