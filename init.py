@@ -35,8 +35,14 @@ def profile():
 
 @app.route('/music', methods=['GET'])
 def music():
-    music_data = database.get_all_songs()
-    return render_template("music.html", data=music_data)
+    if request.method == 'POST':
+        playlist = request.form['playlist_name']
+        print(playlist)
+        music_data = database.get_playlist_songs(playlist)
+        return render_template("music.html", data=music_data)
+    else:
+        music_data = database.get_all_songs()
+        return render_template("music.html", data=music_data)
 
 
 # @app.route('/search_music', methods=['GET'])

@@ -53,3 +53,20 @@ def get_all_songs():
             return music_data
     except sqlite3.Error as error:
         print(error)
+
+
+def get_playlist_songs(playlist):
+    """
+    FIXME: Need to find a query to return the music in the selcted playlist name
+    :param playlist: playlist name in the database
+    :return: list of songs 
+    """
+    try:
+        cur = get_db()
+        music_data = cur.execute("""SELECT * FROM music; """).fetchall()
+        if music_data is None:
+            return None
+        else:
+            return music_data
+    except sqlite3.Error as error:
+        print(error)
